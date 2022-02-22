@@ -1,67 +1,63 @@
-# Project Name
+# City Explorer
 
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Micha Davis
+**Version**: 1.1.2 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+The Internet brings us a new way to explore the world from the comfort of one's home. This simple app engages that digital wanderlust by providing a simple birds-eye view of any location the user might care to look upon.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+Enter a place name into the search bar and click the `Explore!` button.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+Built with React and React-Bootstrap with JS and JSX, with data from the LocationIQ API.
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
-
-## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-
 Name of feature: #1 - Set up repository & API keys
 
 Estimate of time needed to complete: 20min
 
-Start time: 2:15
+Start time: 2/21/22 @2:15pm
 
-Finish time: 2:32
+Finish time: 2/21/22 @2:32pm
 
 Actual time needed to complete: 17min
 
 ---
 
-Name of feature: #2 Locations
+Name of feature: #2 - Set up calls to API and response handling
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 60min
 
-Start time: _____
+Start time: 2/21/22 @ 2:35pm
 
-Finish time: _____
+Finish time: 2/21/22 @ 4:35pm
 
-Actual time needed to complete: _____
-
----
-
-Name of feature: #3 Map
-
-Estimate of time needed to complete: _____
-
-Start time: _____
-
-Finish time: _____
-
-Actual time needed to complete: _____
+Actual time needed to complete: 90min (+15 min break +15min meeting)
 
 ---
 
-Name of feature: #4 Errors
+Name of feature: #3 - Render map and data, style
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 15min
 
-Start time: _____
+Start time: 2/21/22 @ 4:40pm
 
-Finish time: _____
+Finish time: 2/21/22 @ 4:50pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 10min
+
+---
+
+Name of feature: #4 - Error handling for invalid or empty location
+
+Estimate of time needed to complete: 45min
+
+Start time: 2/21/22 @ 5:00pm
+
+Finish time: 2/21/22 @ 5:50pm
+
+Actual time needed to complete: 50min
+
+## Credit and Collaborations
+* [LocationIQ](https://locationiq.com/)
