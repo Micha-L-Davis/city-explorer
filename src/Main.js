@@ -37,7 +37,7 @@ class Main extends React.Component {
         <Form onSubmit={this.handleFetchCityData}>
           <Form.Group>
             <Form.Label>Where will you explore?</Form.Label>
-            <Form.Control onChange={this.handleSearchRequest} type="text" name="search" id="input-search" placeholder="Enter a city name..." />;
+            <Form.Control onChange={this.handleSearchRequest} type="text" name="search" id="input-search" placeholder="Enter a city name..." />
           </Form.Group>
           <Button type="submit" variant="info">Explore!</Button>
         </Form>
