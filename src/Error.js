@@ -1,5 +1,4 @@
 import React from "react";
-import { ModalBody } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal"
 
 class Error extends React.Component {
