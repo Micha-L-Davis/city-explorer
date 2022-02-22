@@ -22,13 +22,13 @@
 
 Name of feature: #1 - Set up repository & API keys
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 20min
 
-Start time: _____
+Start time: 2:15
 
-Finish time: _____
+Finish time: 2:32
 
-Actual time needed to complete: _____
+Actual time needed to complete: 17min
 
 ---
 
