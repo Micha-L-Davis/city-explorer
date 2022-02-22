@@ -11,6 +11,7 @@ Enter a place name into the search bar and click the `Explore!` button.
 
 ## Architecture
 Built with React and React-Bootstrap with JS and JSX, with data from the LocationIQ API.
+![The Web Request Response Cycle](./public/Untitled.png)
 
 ## Change Log
 Name of feature: #1 - Set up repository & API keys
