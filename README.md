@@ -1,7 +1,8 @@
 # City Explorer
 
 **Author**: Micha Davis
-**Version**: 1.1.2 (increment the patch/fix version number if you make more commits past your first submission)
+
+**Version**: 1.2.1 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 The Internet brings us a new way to explore the world from the comfort of one's home. This simple app engages that digital wanderlust by providing a simple birds-eye view of any location the user might care to look upon.
@@ -11,6 +12,7 @@ Enter a place name into the search bar and click the `Explore!` button.
 
 ## Architecture
 Built with React and React-Bootstrap with JS and JSX, with data from the LocationIQ API.
+
 ![The Web Request Response Cycle](./public/Untitled.png)
 
 ## Change Log
