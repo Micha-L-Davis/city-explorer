@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button, Image, ListGroup, Modal, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import Error from "./Error"
+import Weather from "./Weather"
 
 class Main extends React.Component {
   constructor(props){
@@ -10,7 +11,8 @@ class Main extends React.Component {
       searchRequest: '',
       searchResults: [],
       errorMessage: '',
-      showModal: false
+      showModal: false,
+      wxData: false
     }
   }
 
@@ -25,7 +27,11 @@ class Main extends React.Component {
     try{
       let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchRequest}&format=json`
       let cityData = await axios.get(url);
+      
       let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=13`
+      
+      let wxURL = `${process.env.REACT_APP_SERVER}/weather?city=${this.state.searchRequest}&lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}`
+      let wxData = await axios.get(wxURL);
 
       this.setState({
         searchResults: [
@@ -39,13 +45,15 @@ class Main extends React.Component {
           <ListGroup.Item>{`City: ${cityData.data[0].display_name}`}</ListGroup.Item>,
           <ListGroup.Item>{`Latitude: ${cityData.data[0].lat}`}</ListGroup.Item>,
           <ListGroup.Item>{`Longitude: ${cityData.data[0].lon}`}</ListGroup.Item>
-        ]
+        ],
+        wxData: wxData 
+
       })
     }
     catch (error){
       console.log(error.response.data);
       this.setState({
-        errorMessage: `${error.response.status}: ${error.response.data.error}`,
+        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'We have a problem, here.'}`,
         showModal: true
       })
     }
@@ -64,10 +72,14 @@ class Main extends React.Component {
               <Button variant="info" type="submit" >Explore!</Button>
             </Col>
           </Form.Group>
-          
         </Form>
+
         <ListGroup>
           {this.state.searchResults}
+          {
+            this.state.wxData &&
+              <Weather wxData={this.state.wxData}/>
+          }
         </ListGroup>
         <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
           <Error errorMessage={this.state.errorMessage}/>
