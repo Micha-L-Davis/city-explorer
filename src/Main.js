@@ -51,9 +51,8 @@ class Main extends React.Component {
       })
     }
     catch (error){
-      console.log(error.response.data);
       this.setState({
-        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'We have a problem, here.'}`,
+        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'No weather data available for this location'}`,
         showModal: true
       })
     }
