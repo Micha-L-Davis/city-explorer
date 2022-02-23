@@ -30,7 +30,7 @@ class Main extends React.Component {
       
       let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=13`
       
-      let wxURL = `${process.env.REACT_APP_SERVER}/weather?city=${this.state.searchRequest}&lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}`
+      let wxURL = `${process.env.REACT_APP_SERVER}/weather?lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}`
       let wxData = await axios.get(wxURL);
 
       this.setState({
