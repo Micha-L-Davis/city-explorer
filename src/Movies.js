@@ -1,5 +1,6 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
+import Movie from "./Movie"
 
 class Movies extends React.Component {
 
@@ -7,9 +8,7 @@ class Movies extends React.Component {
     let result = [];
     this.props.movieData.forEach((movie, index) => {
       result.push(
-        <ListGroup.Item key={`${movie.title}-${index}`}>
-          {movie.title}
-        </ListGroup.Item>
+        <Movie movie={movie} key={`${movie.title}-${index}`}/>
       );
     });
     return result;

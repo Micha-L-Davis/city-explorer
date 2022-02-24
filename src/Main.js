@@ -1,9 +1,12 @@
 import React from "react";
-import { Form, Button, Image, ListGroup, Modal, Row, Col } from "react-bootstrap";
+import { ListGroup, Modal } from "react-bootstrap";
 import axios from "axios";
-import Error from "./Error"
-import Weather from "./Weather"
-import Movies from "./Movies"
+import SearchForm from "./SearchForm";
+import Location from "./Location";
+import Weather from "./Weather";
+import Movies from "./Movies";
+import Error from "./Error";
+
 
 class Main extends React.Component {
   constructor(props){
@@ -18,11 +21,11 @@ class Main extends React.Component {
     }
   }
 
-  handleCloseModal = () => this.setState({ showModal: false })
+  handleCloseModal = () => this.setState({ showModal: false });
 
   handleSearchRequest = (event) => {
     this.setState({searchTerm: event.target.value})
-  }
+  };
 
   handleFetchCityData = async (event) => {
     event.preventDefault();
@@ -39,23 +42,7 @@ class Main extends React.Component {
       let movieData = await axios.get(moviesURL);
 
       this.setState({
-        searchResults: [
-          <ListGroup.Item key="map">
-            <Image 
-              roundedCircle={true} 
-              src={mapURL} 
-              alt={`A map of ${cityData.data[0].display_name}`} 
-              width={400}
-              height={400}
-            />
-          </ListGroup.Item>,
-          <ListGroup.Item key="city">
-            <strong>{cityData.data[0].display_name}</strong>
-          </ListGroup.Item>,
-          <ListGroup.Item key="lat-lon">
-            {`${cityData.data[0].lat} ${cityData.data[0].lon}`}
-          </ListGroup.Item>,
-        ],
+        searchResults: <Location cityData={cityData} mapURL={mapURL} />,
         wxData: wxData, 
         movieData: movieData
       })
@@ -66,22 +53,12 @@ class Main extends React.Component {
         showModal: true
       })
     }
-  }
+  };
 
   render() {
     return (
       <main>
-        <Form onSubmit={this.handleFetchCityData}>
-          <Form.Group as={Row}>
-            <Form.Label>Where will you explore?</Form.Label>
-            <Col sm={9}>
-              <Form.Control onChange={this.handleSearchRequest} type="text" name="search" id="input-search" placeholder="Enter a city name..." />
-            </Col>
-            <Col>
-              <Button variant="info" type="submit" >Explore!</Button>
-            </Col>
-          </Form.Group>
-        </Form>
+        <SearchForm handleFetchCityData={this.handleFetchCityData} handleSearchRequest={this.handleSearchRequest}/>
 
         <ListGroup>
           {this.state.searchResults}
