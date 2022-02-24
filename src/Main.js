@@ -3,56 +3,66 @@ import { Form, Button, Image, ListGroup, Modal, Row, Col } from "react-bootstrap
 import axios from "axios";
 import Error from "./Error"
 import Weather from "./Weather"
+import Movies from "./Movies"
 
 class Main extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      searchRequest: '',
+      searchTerm: '',
       searchResults: [],
       errorMessage: '',
       showModal: false,
-      wxData: false
+      wxData: false,
+      movieData: false
     }
   }
 
   handleCloseModal = () => this.setState({ showModal: false })
 
   handleSearchRequest = (event) => {
-    this.setState({searchRequest: event.target.value})
+    this.setState({searchTerm: event.target.value})
   }
 
   handleFetchCityData = async (event) => {
     event.preventDefault();
     try{
-      let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchRequest}&format=json`
+      let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchTerm}&format=json`
       let cityData = await axios.get(url);
       
       let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=13`
       
-      let wxURL = `${process.env.REACT_APP_SERVER}/weather?city=${this.state.searchRequest}&lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}`
+      let wxURL = `${process.env.REACT_APP_SERVER}/weather?lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}`
       let wxData = await axios.get(wxURL);
+
+      let moviesURL = `${process.env.REACT_APP_SERVER}/movies?location=${this.state.searchTerm}`
+      let movieData = await axios.get(moviesURL);
 
       this.setState({
         searchResults: [
-          <ListGroup.Item><Image 
-            roundedCircle={true} 
-            src={mapURL} 
-            alt={`A map of ${cityData.data[0].display_name}`} 
-            width={400}
-            height={400}
-          /></ListGroup.Item>,
-          <ListGroup.Item>{`City: ${cityData.data[0].display_name}`}</ListGroup.Item>,
-          <ListGroup.Item>{`Latitude: ${cityData.data[0].lat}`}</ListGroup.Item>,
-          <ListGroup.Item>{`Longitude: ${cityData.data[0].lon}`}</ListGroup.Item>
+          <ListGroup.Item key="map">
+            <Image 
+              roundedCircle={true} 
+              src={mapURL} 
+              alt={`A map of ${cityData.data[0].display_name}`} 
+              width={400}
+              height={400}
+            />
+          </ListGroup.Item>,
+          <ListGroup.Item key="city">
+            <strong>{cityData.data[0].display_name}</strong>
+          </ListGroup.Item>,
+          <ListGroup.Item key="lat-lon">
+            {`${cityData.data[0].lat} ${cityData.data[0].lon}`}
+          </ListGroup.Item>,
         ],
-        wxData: wxData 
-
+        wxData: wxData, 
+        movieData: movieData
       })
     }
     catch (error){
       this.setState({
-        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'No weather data available for this location'}`,
+        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'Something went wrong'}`,
         showModal: true
       })
     }
@@ -77,7 +87,11 @@ class Main extends React.Component {
           {this.state.searchResults}
           {
             this.state.wxData &&
-              <Weather wxData={this.state.wxData}/>
+              <Weather wxData={this.state.wxData} />
+          }
+          {
+            this.state.movieData &&
+              <Movies movieData={this.state.movieData.data.movies} city={this.state.searchTerm} />
           }
         </ListGroup>
         <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
