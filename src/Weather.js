@@ -2,13 +2,25 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 class Weather extends React.Component {
+  getListItemArray = () => {
+    let result = [];
+    this.props.wxData.data.forEach((data) => {
+      result.push(
+        <ListGroup.Item key={data.date}>
+          {data.date}: {data.description}
+        </ListGroup.Item>
+      );
+    });
+    return result;
+  }
+
   render() {
     return (
       <>
-        <ListGroup.Item>3-Day Forecast</ListGroup.Item>
-        <ListGroup.Item>{this.props.wxData.data[0].date}: {this.props.wxData.data[0].description}</ListGroup.Item>
-        <ListGroup.Item>{this.props.wxData.data[1].date}: {this.props.wxData.data[1].description}</ListGroup.Item>
-        <ListGroup.Item>{this.props.wxData.data[2].date}: {this.props.wxData.data[2].description}</ListGroup.Item>
+        <ListGroup.Item key="weather-section">
+          <strong>3-Day Forecast</strong>
+        </ListGroup.Item>
+        {this.getListItemArray()}
       </>
     );
   }
