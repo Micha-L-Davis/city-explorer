@@ -1,14 +1,13 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
+import WeatherDay from "./WeatherDay"
 
 class Weather extends React.Component {
   getListItemArray = () => {
     let result = [];
     this.props.wxData.data.forEach((data) => {
       result.push(
-        <ListGroup.Item key={data.date}>
-          {data.date}: {data.description}
-        </ListGroup.Item>
+        <WeatherDay data={data} key={data.date}/>
       );
     });
     return result;
