@@ -15,6 +15,14 @@ Built with React and React-Bootstrap with JS and JSX, with data from the Locatio
 
 ![The Web Request Response Cycle](./public/wrrc-lab10.png)
 
+[WRRC Lab 9](./public/wrrc-lab9.png)
+
+[WRRC Lab 8](./public/wrrc-lab8.png)
+
+[WRRC Lab 7](./public/wrrc-lab7.png)
+
+[WRRC Lab 6](./public/wrrc-lab6.png)
+
 ## Change Log
 Name of feature: #1 - Set up repository & API keys
 
