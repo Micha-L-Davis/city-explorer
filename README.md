@@ -89,4 +89,4 @@ Actual time needed to complete: 15min
 
 ## Credit and Collaborations
 * [LocationIQ](https://locationiq.com/)
-* Collab with Rey Mercado, Michael Campbell, Matt Rangel on WRRC diagram
+* Collab with Rey Mercado, Michael Campbell, Matt Rangel, Dan Brian on WRRC diagrams
