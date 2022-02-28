@@ -49,7 +49,7 @@ class Main extends React.Component {
     }
     catch (error){
       this.setState({
-        errorMessage: `${error.response.status}: ${error.response.data.error ? error.response.data.error : 'Something went wrong'}`,
+        errorMessage: error.response,
         showModal: true
       })
     }
