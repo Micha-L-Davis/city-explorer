@@ -6,11 +6,16 @@ class Movies extends React.Component {
 
   getListItemArray = () => {
     let result = [];
-    this.props.movieData.forEach((movie, index) => {
-      result.push(
-        <Movie movie={movie} key={`${movie.title}-${index}`}/>
-      );
-    });
+    try{
+      this.props.movieData.forEach((movie, index) => {
+        result.push(
+          <Movie movie={movie} key={`${movie.title}-${index}`}/>
+        );
+      });
+    }
+    catch (error) {
+      console.log('Movie data = ' + this.props.movieData + ' Error: ' + error.message);
+    }
     return result;
   };
 
